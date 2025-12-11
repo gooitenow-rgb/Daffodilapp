@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Posts</title>
+
+<style>
+    body{
+        margin:0;
+        font-family: "Poppins", sans-serif;
+        background:#eef1f6;
+    }
+
+    .header{
+        background:#fff;
+        padding:12px 15px;
+        display:flex;
+        align-items:center;
+        gap:12px;
+        box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    }
+    .header img{
+        width:40px;
+        height:40px;
+        border-radius:50%;
+    }
+    .header h2{
+        margin:0;
+        font-size:20px;
+    }
+
+    .post{
+        background:#fff;
+        margin:15px;
+        padding:15px;
+        border-radius:12px;
+        box-shadow:0 2px 7px rgba(0,0,0,0.1);
+    }
+    .post img{
+        width:100%;
+        border-radius:10px;
+        margin-bottom:10px;
+    }
+    .post-title{
+        font-size:18px;
+        font-weight:600;
+        margin-bottom:5px;
+    }
+    .post-desc{
+        font-size:14px;
+        margin-bottom:8px;
+        color:#333;
+    }
+    .post-date{
+        font-size:12px;
+        color:#777;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <img src="logo.png" alt="Logo">
+    <h2>Daffodils (Posts)</h2>
+</div>
+
+<div id="postContainer"></div>
+
+<script>
+function loadPosts(){
+    let posts = JSON.parse(localStorage.getItem("school_posts")) || [];
+    let container = document.getElementById("postContainer");
+    container.innerHTML = "";
+
+    posts.forEach(p=>{
+        container.innerHTML += `
+            <div class="post">
+                ${p.image ? `<img src="${p.image}">` : ""}
+                <div class="post-title">${p.title}</div>
+                <div class="post-desc">${p.desc}</div>
+                <div class="post-date">${p.date}</div>
+            </div>
+        `;
+    });
+}
+
+loadPosts();
+</script>
+
+</body>
+</html>

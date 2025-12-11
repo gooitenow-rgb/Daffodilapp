@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daffodil Public School - Home</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #0d47a1 0%, #1976d2 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(13, 71, 161, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+            background: white;
+            padding: 3px;
+        }
+
+        .school-name h1 {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .school-name p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .user-info i {
+            font-size: 24px;
+        }
+
+        /* Marquee Styles */
+        .marquee-container {
+            background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 12px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+            padding-left: 100%;
+        }
+
+        .marquee-content span {
+            margin-right: 40px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .marquee-content i {
+            margin-right: 10px;
+            color: #ffeaa7;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Slider Styles - FIXED */
+        .slider-container {
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider {
+            display: flex;
+            width: 600%; /* 6 slides * 100% */
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .slide {
+            width: 16.6667%; /* 100% / 6 */
+            height: 100%;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .slide h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .slide p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .slider-dot.active {
+            background: white;
+            transform: scale(1.2);
+            box-shadow: 0 0 5px white;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+
+        .slider-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-slide {
+            left: 10px;
+        }
+
+        .next-slide {
+            right: 10px;
+        }
+
+        /* Quick Access Boxes */
+        .quick-access {
+            padding: 20px;
+        }
+
+        .section-title {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 22px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #0d47a1;
+        }
+
+        .boxes-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .access-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
+            position: relative;
+        }
+
+        .access-box:hover {
+            transform: translateY(-5px);
+            border-color: #0d47a1;
+            box-shadow: 0 8px 20px rgba(13, 71, 161, 0.15);
+        }
+
+        .box-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0d47a1 0%, #1976d2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .box-icon i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .access-box h3 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .access-box p {
+            color: #666;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .box-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        /* Updates Section */
+        .updates-section {
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+
+        .updates-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .update-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #0d47a1;
+        }
+
+        .update-date {
+            background: #e3f2fd;
+            color: #0d47a1;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .update-card h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .update-card p {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .read-more {
+            color: #0d47a1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            padding: 8px 15px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            flex: 1;
+            max-width: 100px;
+        }
+
+        .nav-item i {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .nav-item span {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            color: #0d47a1;
+            background: #e3f2fd;
+        }
+
+        .nav-item:hover {
+            color: #0d47a1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 15px;
+            }
+            
+            .school-name h1 {
+                font-size: 18px;
+            }
+            
+            .slider-container {
+                height: 200px;
+            }
+            
+            .slide h2 {
+                font-size: 16px;
+            }
+            
+            .slider-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+            
+            .boxes-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .access-box {
+                padding: 15px;
+                min-height: 120px;
+            }
+            
+            .box-icon {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 10px;
+            }
+            
+            .box-icon i {
+                font-size: 20px;
+            }
+            
+            .access-box h3 {
+                font-size: 14px;
+            }
+            
+            .access-box p {
+                font-size: 11px;
+            }
+            
+            .nav-item {
+                padding: 8px 10px;
+            }
+            
+            .nav-item span {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .school-name h1 {
+                font-size: 16px;
+            }
+            
+            .user-info span {
+                display: none;
+            }
+            
+            .slider-container {
+                height: 180px;
+            }
+            
+            .slide h2 {
+                font-size: 14px;
+            }
+            
+            .slide p {
+                font-size: 11px;
+            }
+            
+            .slider-nav {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+            
+            .boxes-container {
+                gap: 10px;
+            }
+            
+            .access-box {
+                padding: 12px;
+                min-height: 110px;
+            }
+            
+            .box-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .box-icon i {
+                font-size: 18px;
+            }
+            
+            .access-box h3 {
+                font-size: 13px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .access-box {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .access-box:nth-child(1) { animation-delay: 0.1s; }
+        .access-box:nth-child(2) { animation-delay: 0.2s; }
+        .access-box:nth-child(3) { animation-delay: 0.3s; }
+        .access-box:nth-child(4) { animation-delay: 0.4s; }
+        .access-box:nth-child(5) { animation-delay: 0.5s; }
+        .access-box:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-left">
+            <img src="logo.png" alt="Daffodil Logo" class="logo-img">
+            <div class="school-name">
+                <h1>Daffodil Public School</h1>
+                <p>Based On CBSE Curriculum</p>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <div class="user-info">
+                <span id="displayReg">2025R01</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Marquee Section -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span><i class="fas fa-bell"></i> Parent-Teacher Meeting: 25th December, 10 AM</span>
+            <span><i class="fas fa-trophy"></i> Annual Sports Day: 30th December</span>
+            <span><i class="fas fa-book"></i> Mid-Term Exams start from 15th January</span>
+            <span><i class="fas fa-calendar"></i> Winter Vacation: 1st to 10th January</span>
+            <span><i class="fas fa-award"></i> Student of the Month: Rohan Sharma</span>
+        </div>
+    </div>
+
+    <!-- Slider Banner with 6 Images - FIXED -->
+    <div class="slider-container">
+        <div class="slider-wrapper">
+            <div class="slider" id="slider">
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <img src="1.png" alt="School Campus">
+                    <div class="slide-content">
+                        
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <img src="2.png" alt="Classroom">
+                    <div class="slide-content">
+                        
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <img src="3.png" alt="Students Learning">
+                    <div class="slide-content">
+                        
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="slide">
+                    <img src="4.png" alt="Science Lab">
+                    <div class="slide-content">
+                        
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="slide">
+                    <img src="5.png" alt="Sports">
+                    <div class="slide-content">
+                        
+                    </div>
+                </div>
+                <!-- Slide 6 -->
+                <div class="slide">
+                    <img src="6.png" alt="Library">
+                    <div class="slide-content">
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <button class="slider-nav prev-slide" onclick="prevSlide()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-nav next-slide" onclick="nextSlide()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Dots -->
+            <div class="slider-controls">
+                <span class="slider-dot active" onclick="goToSlide(0)"></span>
+                <span class="slider-dot" onclick="goToSlide(1)"></span>
+                <span class="slider-dot" onclick="goToSlide(2)"></span>
+                <span class="slider-dot" onclick="goToSlide(3)"></span>
+                <span class="slider-dot" onclick="goToSlide(4)"></span>
+                <span class="slider-dot" onclick="goToSlide(5)"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Access Boxes with URLs -->
+    <div class="quick-access">
+        <h2 class="section-title">Quick Access</h2>
+        <div class="boxes-container">
+            <!-- Homework - Google Classroom -->
+            <a href="homework.html" target="_blank" class="access-box">
+                <div class="box-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3>Home Work</h3>
+                <p>Daily assignments & projects</p>
+                <span class="box-badge">New</span>
+            </a>
+
+            <!-- Fee Check - Payment Portal -->
+            <a href="fee.html" target="_blank" class="access-box">
+                <div class="box-icon">
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                <h3>Fee Check</h3>
+                <p>View & pay fees online</p>
+                <span class="box-badge">Due</span>
+            </a>
+
+            <!-- Result Check - Results Portal -->
+            <a href="result.html" target="_blank" class="access-box">
+                <div class="box-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Result Check</h3>
+                <p>Exam results & reports</p>
+                <span class="box-badge">Check</span>
+            </a>
+
+            <!-- Teacher Contact - School Directory -->
+            <a href="notices.html" target="_blank" class="access-box">
+                <div class="box-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>Notices</h3>
+                <p>Notices</p>
+                <span class="box-badge">new</span>
+            </a>
+
+            <!-- Posts - School Blog -->
+            <a href="post.html" target="_blank" class="access-box">
+                <div class="box-icon">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <h3>School Posts</h3>
+                <p>News & announcements</p>
+                <span class="box-badge">New</span>
+            </a>
+
+            <!-- Videos - YouTube Channel -->
+            <a href="video.html" target="_blank" class="access-box">
+                <div class="box-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>School Videos</h3>
+                <p>Educational videos</p>
+                <span class="box-badge">Watch</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Updates Section -->
+    <div class="updates-section">
+        <h2 class="section-title">Recent Updates</h2>
+        <div class="updates-container">
+            <div class="update-card">
+                <div class="update-date">new</div>
+                <h3>Happy New years 2026</h3>
+                <p>All right To Open School in 2 jan ko !</p>
+                <a href="https://www.daffodilpublicschool.edu/science-fair" target="_blank" class="read-more">Read More →</a>
+            </div>
+            
+            
+
+    <!-- Bottom Navigation Menu -->
+    <nav class="bottom-nav">
+        <a href="Home.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        
+        <a href="About.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>About</span>
+        </a>
+        
+        <a href="help.html" class="nav-item">
+            <i class="fas fa-question-circle"></i>
+            <span>Help</span>
+        </a>
+    </nav>
+
+    <!-- JavaScript for Slider -->
+    <script>
+        // Slider variables
+        let currentSlide = 0;
+        const totalSlides = 6;
+        let slideInterval;
+        const slider = document.getElementById('slider');
+        const dots = document.querySelectorAll('.slider-dot');
+        
+        // Initialize slider
+        function initSlider() {
+            updateSlider();
+            startAutoPlay();
+            
+            // Pause auto-play on hover
+            const sliderWrapper = document.querySelector('.slider-wrapper');
+            sliderWrapper.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            sliderWrapper.addEventListener('mouseleave', () => {
+                startAutoPlay();
+            });
+            
+            // Touch/swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            sliderWrapper.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(slideInterval);
+            });
+            
+            sliderWrapper.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                startAutoPlay();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        nextSlide(); // Swipe left
+                    } else {
+                        prevSlide(); // Swipe right
+                    }
+                }
+            }
+        }
+        
+        // Update slider position
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 16.6667}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        // Go to specific slide
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlider();
+            resetAutoPlay();
+        }
+        
+        // Next slide
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+            resetAutoPlay();
+        }
+        
+        // Previous slide
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+            resetAutoPlay();
+        }
+        
+        // Auto-play functionality
+        function startAutoPlay() {
+            slideInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+        }
+        
+        function resetAutoPlay() {
+            clearInterval(slideInterval);
+            startAutoPlay();
+        }
+        
+        // Marquee animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const marquee = document.querySelector('.marquee-content');
+            const content = marquee.innerHTML;
+            marquee.innerHTML = content + content; // Duplicate for seamless loop
+            
+            // Initialize slider
+            initSlider();
+        });
+        
+        // Simulate user login
+        document.addEventListener('DOMContentLoaded', function() {
+            const regNumber = localStorage.getItem('regNumber') || '2025R01';
+            document.getElementById('displayReg').textContent = regNumber;
+        });
+        
+        // Add click animation to boxes
+        document.querySelectorAll('.access-box').forEach(box => {
+            box.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Handle navigation active state
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
+    </script>
+</body>
+</html>
