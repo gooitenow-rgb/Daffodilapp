@@ -2,49 +2,65 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Login</title>
 
 <style>
+*{
+ box-sizing:border-box;
+}
 body{
  margin:0;
- font-family:Poppins;
+ font-family:Poppins, sans-serif;
  background:#d5f4ff;
 }
 .container{
- max-width:400px;
- margin:40px auto;
+ width:92%;
+ max-width:380px;
+ margin:30px auto;
  background:#fff;
  border-radius:20px;
  overflow:hidden;
+ box-shadow:0 6px 20px rgba(0,0,0,.15);
 }
 .header{
  text-align:center;
- padding:20px;
+ padding:20px 15px;
 }
-.header img{width:80px;}
+.header img{
+ width:70px;
+}
+.header h2{
+ font-size:20px;
+ margin:10px 0 0;
+}
 .login{
  background:#0d47a1;
- padding:30px;
+ padding:25px 20px;
  color:white;
  text-align:center;
 }
-input{
+.login input{
  width:100%;
- padding:12px;
- margin:10px 0;
+ padding:14px;
+ margin:12px 0;
  border:none;
- border-radius:8px;
+ border-radius:10px;
+ font-size:15px;
 }
-button{
+.login button{
  width:100%;
- padding:12px;
+ padding:14px;
  border:none;
- border-radius:25px;
+ border-radius:30px;
  background:#bbdefb;
  color:#0d47a1;
- font-size:16px;
+ font-size:17px;
  font-weight:600;
+ cursor:pointer;
 }
+
+/* Popup */
 .popup{
  position:fixed;
  top:50%;
@@ -55,9 +71,19 @@ button{
  border-radius:20px;
  text-align:center;
  transition:.3s;
+ width:260px;
+ z-index:999;
 }
-.popup.show{transform:translate(-50%,-50%) scale(1);}
-.popup img{width:100px;}
+.popup.show{
+ transform:translate(-50%,-50%) scale(1);
+}
+.popup img{
+ width:90px;
+}
+.popup h3{
+ color:#0d47a1;
+ margin-top:10px;
+}
 </style>
 </head>
 
@@ -70,8 +96,8 @@ button{
  </div>
 
  <div class="login">
-  <input id="uid" placeholder="User ID">
-  <input id="pwd" type="password" placeholder="Password">
+  <input id="uid" placeholder="Enter User ID">
+  <input id="pwd" type="password" placeholder="Enter Password">
   <button onclick="login()">LOGIN</button>
  </div>
 </div>
@@ -83,7 +109,7 @@ button{
 
 <script>
 const users={
- DSO01:{pass:"202601",name:"Class 1st ",photo:"icon.gif"},
+ DSO01:{pass:"202601",name:"Class 1st",photo:"icon.gif"},
  DST02:{pass:"202602",name:"Class 2nd",photo:"icon.gif"},
  DST03:{pass:"202603",name:"Class 3rd",photo:"icon.gif"},
  DSF04:{pass:"202604",name:"Class 4th",photo:"icon.gif"},
@@ -105,7 +131,7 @@ function login(){
   g.src="s.gif";
   m.innerText="Login Successful";
   pop.classList.add("show");
-  setTimeout(()=>location.href="profile.html",2000);
+  setTimeout(()=>location.href="profile.html",1800);
  }else{
   g.src="e.gif";
   m.innerText="Invalid Login";
