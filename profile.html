@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>User Profile</title>
+
+<style>
+body{
+ margin:0;
+ font-family:Poppins;
+ background:#e3f2fd;
+}
+.card{
+ max-width:380px;
+ margin:40px auto;
+ background:white;
+ border-radius:20px;
+ padding:25px;
+ text-align:center;
+ box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+.card img{
+ width:120px;
+ height:120px;
+ border-radius:50%;
+ object-fit:cover;
+}
+h2{color:#0d47a1;}
+.time{
+ margin:15px 0;
+ font-weight:600;
+}
+button{
+ width:100%;
+ padding:12px;
+ border:none;
+ border-radius:25px;
+ background:#0d47a1;
+ color:white;
+ font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+ <img id="photo">
+ <h2 id="name"></h2>
+ <p>🎉 Welcome to Daffodils Public School</p>
+ <div class="time" id="clock"></div>
+ <button onclick="location.href='home.html'">Next ➜ Home</button>
+</div>
+
+<script>
+let data=JSON.parse(localStorage.getItem("userData"));
+document.getElementById("name").innerText=data.name;
+document.getElementById("photo").src=data.photo;
+
+function time(){
+ let d=new Date();
+ clock.innerText=d.toLocaleDateString()+" | "+d.toLocaleTimeString();
+}
+setInterval(time,1000); time();
+</script>
+
+</body>
+</html>
