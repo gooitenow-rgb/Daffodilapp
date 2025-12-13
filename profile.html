@@ -2,42 +2,60 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>User Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Profile</title>
 
 <style>
 body{
  margin:0;
- font-family:Poppins;
+ font-family:Poppins, sans-serif;
  background:#e3f2fd;
 }
 .card{
- max-width:380px;
- margin:40px auto;
+ width:92%;
+ max-width:360px;
+ margin:30px auto;
  background:white;
- border-radius:20px;
- padding:25px;
+ border-radius:22px;
+ padding:25px 20px;
  text-align:center;
- box-shadow:0 4px 15px rgba(0,0,0,.2);
+ box-shadow:0 6px 20px rgba(0,0,0,.2);
 }
 .card img{
- width:120px;
- height:120px;
+ width:110px;
+ height:110px;
  border-radius:50%;
  object-fit:cover;
+ border:4px solid #0d47a1;
 }
-h2{color:#0d47a1;}
+h2{
+ color:#0d47a1;
+ margin:15px 0 5px;
+ font-size:22px;
+}
+.welcome{
+ font-size:15px;
+ color:#555;
+ margin-bottom:15px;
+}
 .time{
- margin:15px 0;
- font-weight:600;
+ background:#0d47a1;
+ color:white;
+ padding:10px;
+ border-radius:12px;
+ font-size:14px;
+ margin-bottom:20px;
 }
 button{
  width:100%;
- padding:12px;
+ padding:14px;
  border:none;
- border-radius:25px;
+ border-radius:30px;
  background:#0d47a1;
  color:white;
  font-size:16px;
+ font-weight:600;
+ cursor:pointer;
 }
 </style>
 </head>
@@ -47,21 +65,24 @@ button{
 <div class="card">
  <img id="photo">
  <h2 id="name"></h2>
- <p>🎉 Welcome to Daffodils Public School</p>
+ <div class="welcome">🎉 Welcome to Daffodils Public School</div>
  <div class="time" id="clock"></div>
  <button onclick="location.href='home.html'">Next ➜ Home</button>
 </div>
 
 <script>
-let data=JSON.parse(localStorage.getItem("userData"));
-document.getElementById("name").innerText=data.name;
-document.getElementById("photo").src=data.photo;
+let data = JSON.parse(localStorage.getItem("userData"));
 
-function time(){
- let d=new Date();
- clock.innerText=d.toLocaleDateString()+" | "+d.toLocaleTimeString();
+document.getElementById("name").innerText = data.name;
+document.getElementById("photo").src = data.photo;
+
+function updateTime(){
+ let d = new Date();
+ document.getElementById("clock").innerText =
+  d.toLocaleDateString()+" | "+d.toLocaleTimeString();
 }
-setInterval(time,1000); time();
+setInterval(updateTime,1000);
+updateTime();
 </script>
 
 </body>
