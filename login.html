@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Login</title>
+
+<style>
+*{
+ box-sizing:border-box;
+}
+body{
+ margin:0;
+ font-family:Poppins, sans-serif;
+ background:#d5f4ff;
+}
+.container{
+ width:92%;
+ max-width:380px;
+ margin:30px auto;
+ background:#fff;
+ border-radius:20px;
+ overflow:hidden;
+ box-shadow:0 6px 20px rgba(0,0,0,.15);
+}
+.header{
+ text-align:center;
+ padding:20px 15px;
+}
+.header img{
+ width:70px;
+}
+.header h2{
+ font-size:20px;
+ margin:10px 0 0;
+}
+.login{
+ background:#0d47a1;
+ padding:25px 20px;
+ color:white;
+ text-align:center;
+}
+.login input{
+ width:100%;
+ padding:14px;
+ margin:12px 0;
+ border:none;
+ border-radius:10px;
+ font-size:15px;
+}
+.login button{
+ width:100%;
+ padding:14px;
+ border:none;
+ border-radius:30px;
+ background:#bbdefb;
+ color:#0d47a1;
+ font-size:17px;
+ font-weight:600;
+ cursor:pointer;
+}
+
+/* Popup */
+.popup{
+ position:fixed;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-50%) scale(0);
+ background:white;
+ padding:20px;
+ border-radius:20px;
+ text-align:center;
+ transition:.3s;
+ width:260px;
+ z-index:999;
+}
+.popup.show{
+ transform:translate(-50%,-50%) scale(1);
+}
+.popup img{
+ width:90px;
+}
+.popup h3{
+ color:#0d47a1;
+ margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+ <div class="header">
+  <img src="logo.png">
+  <h2>Daffodils Public School</h2>
+ </div>
+
+ <div class="login">
+  <input id="uid" placeholder="Enter User ID">
+  <input id="pwd" type="password" placeholder="Enter Password">
+  <button onclick="login()">LOGIN</button>
+ </div>
+</div>
+
+<div class="popup" id="popup">
+ <img id="gif">
+ <h3 id="msg"></h3>
+</div>
+
+<script>
+const users={
+ DSO01:{pass:"202601",name:"Class 1st",photo:"icon.gif"},
+ DST02:{pass:"202602",name:"Class 2nd",photo:"icon.gif"},
+ DST03:{pass:"202603",name:"Class 3rd",photo:"icon.gif"},
+ DSF04:{pass:"202604",name:"Class 4th",photo:"icon.gif"},
+ DSF05:{pass:"202605",name:"Class 5th",photo:"icon.gif"},
+ DSS06:{pass:"202606",name:"Class 6th",photo:"icon.gif"},
+ DSS07:{pass:"202607",name:"Class 7th",photo:"icon.gif"},
+ DSE08:{pass:"202608",name:"Class 8th",photo:"icon.gif"},
+ DSN09:{pass:"202609",name:"Class 9th",photo:"icon.gif"},
+ DST10:{pass:"202610",name:"Class 10th",photo:"icon.gif"}
+};
+
+function login(){
+ let u=uid.value.trim();
+ let p=pwd.value.trim();
+ let pop=popup, g=gif, m=msg;
+
+ if(users[u] && users[u].pass===p){
+  localStorage.setItem("userData",JSON.stringify(users[u]));
+  g.src="s.gif";
+  m.innerText="Login Successful";
+  pop.classList.add("show");
+  setTimeout(()=>location.href="profile.html",1800);
+ }else{
+  g.src="e.gif";
+  m.innerText="Invalid Login";
+  pop.classList.add("show");
+  setTimeout(()=>pop.classList.remove("show"),2500);
+ }
+}
+</script>
+
+</body>
+</html>
