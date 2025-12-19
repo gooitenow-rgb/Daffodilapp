@@ -1,143 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>School App</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Login</title>
 
 <style>
 *{
- box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+html,body{
+    height:100%;
 }
 body{
- margin:0;
- font-family:Poppins, sans-serif;
- background:#d5f4ff;
-}
-.container{
- width:92%;
- max-width:380px;
- margin:30px auto;
- background:#fff;
- border-radius:20px;
- overflow:hidden;
- box-shadow:0 6px 20px rgba(0,0,0,.15);
-}
-.header{
- text-align:center;
- padding:20px 15px;
-}
-.header img{
- width:70px;
-}
-.header h2{
- font-size:20px;
- margin:10px 0 0;
-}
-.login{
- background:#0d47a1;
- padding:25px 20px;
- color:white;
- text-align:center;
-}
-.login input{
- width:100%;
- padding:14px;
- margin:12px 0;
- border:none;
- border-radius:10px;
- font-size:15px;
-}
-.login button{
- width:100%;
- padding:14px;
- border:none;
- border-radius:30px;
- background:#bbdefb;
- color:#0d47a1;
- font-size:17px;
- font-weight:600;
- cursor:pointer;
+    background:linear-gradient(180deg,#2563eb,#1e3a8a);
+    color:#fff;
 }
 
-/* Popup */
-.popup{
- position:fixed;
- top:50%;
- left:50%;
- transform:translate(-50%,-50%) scale(0);
- background:white;
- padding:20px;
- border-radius:20px;
- text-align:center;
- transition:.3s;
- width:260px;
- z-index:999;
+/* SCREEN */
+.screen{
+    display:none;
+    height:100vh;
+    width:100%;
+    padding:20px;
+    text-align:center;
 }
-.popup.show{
- transform:translate(-50%,-50%) scale(1);
+.active{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
-.popup img{
- width:90px;
+
+/* TOP */
+.top{
+    margin-top:50px;
 }
-.popup h3{
- color:#0d47a1;
- margin-top:10px;
+.top img{
+    width:75%;
+    max-width:260px;
+}
+.top h2{
+    margin-top:25px;
+    font-size:22px;
+}
+
+/* BUTTON */
+button{
+    width:90%;
+    margin:0 auto 30px;
+    padding:16px;
+    border:none;
+    border-radius:30px;
+    background:#fff;
+    color:#2563eb;
+    font-size:18px;
+    font-weight:600;
+}
+
+/* ROLE */
+.role-container{
+    display:flex;
+    justify-content:space-around;
+    margin-top:60px;
+}
+.role-box{
+    width:45%;
+    height:180px;
+    background:#fff;
+    border-radius:22px;
+    color:#2563eb;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+.role-box img{
+    width:70px;
+}
+.role-box h3{
+    margin-top:15px;
+}
+
+/* BOTTOM ICON */
+.bottom-icon{
+    margin-bottom:25px;
+}
+.bottom-icon img{
+    width:45px;
+}
+
+/* 🔥 NEW LOGO LOADING */
+.loading{
+    justify-content:center;
+    align-items:center;
+}
+.logo-wrap{
+    position:relative;
+    width:120px;
+    height:120px;
+}
+.logo-wrap img{
+    width:80px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    animation:pulse 1.6s infinite;
+}
+.ring{
+    position:absolute;
+    width:120px;
+    height:120px;
+    border:3px solid rgba(255,255,255,.4);
+    border-top-color:#fff;
+    border-radius:50%;
+    animation:spin 1.2s linear infinite;
+}
+@keyframes spin{
+    100%{transform:rotate(360deg);}
+}
+@keyframes pulse{
+    0%,100%{transform:translate(-50%,-50%) scale(1);}
+    50%{transform:translate(-50%,-50%) scale(1.1);}
+}
+.loading p{
+    margin-top:25px;
+    font-size:16px;
+    opacity:.9;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
- <div class="header">
-  <img src="logo.png">
-  <h2>Daffodils Public School</h2>
- </div>
-
- <div class="login">
-  <input id="uid" placeholder="Enter User ID">
-  <input id="pwd" type="password" placeholder="Enter Password">
-  <button onclick="login()">LOGIN</button>
- </div>
+<!-- WELCOME 1 -->
+<div class="screen active">
+    <div class="top">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
+        <h2>Welcome To School App</h2>
+    </div>
+    <button onclick="nextScreen(1)">Next</button>
 </div>
 
-<div class="popup" id="popup">
- <img id="gif">
- <h3 id="msg"></h3>
+<!-- WELCOME 2 -->
+<div class="screen">
+    <div class="top">
+        <img src="https://cdn-icons-png.flaticon.com/512/2942/2942925.png">
+        <h2>Smart Digital Education</h2>
+    </div>
+    <button onclick="nextScreen(2)">Next</button>
+</div>
+
+<!-- WELCOME 3 -->
+<div class="screen">
+    <div class="top">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201818.png">
+        <h2>Teacher & Student Portal</h2>
+    </div>
+    <button onclick="nextScreen(3)">Get Started</button>
+</div>
+
+<!-- ROLE -->
+<div class="screen">
+    <h2 style="margin-top:40px;">Login As</h2>
+
+    <div class="role-container">
+        <div class="role-box" onclick="openPage('https://gooitenow-rgb.github.io/Daffodil-teacher-App/')">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135810.png">
+            <h3>Teacher</h3>
+        </div>
+
+        <div class="role-box" onclick="openPage('login.html')">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png">
+            <h3>Student</h3>
+        </div>
+    </div>
+
+    <div class="bottom-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png">
+    </div>
+</div>
+
+<!-- 🔥 NEW LOADING -->
+<div class="screen loading">
+    <div class="logo-wrap">
+        <div class="ring"></div>
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
+    </div>
+    <p>Loading Please Wait... Is DAFFODIL PUBLIC SCHOOL</p>
 </div>
 
 <script>
-const users={
- DSO01:{pass:"202601",name:"Class 1st",photo:"icon.gif"},
- DST02:{pass:"202602",name:"Class 2nd",photo:"icon.gif"},
- DST03:{pass:"202603",name:"Class 3rd",photo:"icon.gif"},
- DSF04:{pass:"202604",name:"Class 4th",photo:"icon.gif"},
- DSF05:{pass:"202605",name:"Class 5th",photo:"icon.gif"},
- DSS06:{pass:"202606",name:"Class 6th",photo:"icon.gif"},
- DSS07:{pass:"202607",name:"Class 7th",photo:"icon.gif"},
- DSE08:{pass:"202608",name:"Class 8th",photo:"icon.gif"},
- DSN09:{pass:"202609",name:"Class 9th",photo:"icon.gif"},
- DST10:{pass:"202610",name:"Class 10th",photo:"icon.gif"}
-};
+let screens=document.querySelectorAll(".screen");
 
-function login(){
- let u=uid.value.trim();
- let p=pwd.value.trim();
- let pop=popup, g=gif, m=msg;
+function nextScreen(i){
+    screens.forEach(s=>s.classList.remove("active"));
+    screens[i].classList.add("active");
+}
 
- if(users[u] && users[u].pass===p){
-  localStorage.setItem("userData",JSON.stringify(users[u]));
-  g.src="s.gif";
-  m.innerText="Login Successful";
-  pop.classList.add("show");
-  setTimeout(()=>location.href="profile.html",1800);
- }else{
-  g.src="e.gif";
-  m.innerText="Invalid Login";
-  pop.classList.add("show");
-  setTimeout(()=>pop.classList.remove("show"),2500);
- }
+function openPage(page){
+    screens.forEach(s=>s.classList.remove("active"));
+    screens[4].classList.add("active");
+
+    setTimeout(()=>{
+        window.location.href=page;
+    },5000);
 }
 </script>
 
