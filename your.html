@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Certificate Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#eef2f7;
+}
+
+/* Header */
+header{
+    background:#0d47a1;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    padding:12px;
+}
+
+header img{
+    width:45px;
+    height:45px;
+}
+
+header h1{
+    flex:1;
+    text-align:center;
+    font-size:20px;
+}
+
+/* Main */
+.container{
+    height:calc(100vh - 70px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.box-wrapper{
+    display:flex;
+    gap:20px;
+}
+
+/* Square Box */
+.box{
+    width:140px;
+    height:140px;
+    background:#ffffff;
+    border-radius:15px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.2);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.box:hover{
+    transform:scale(1.05);
+}
+
+/* Icon Image */
+.box img{
+    width:55px;
+    height:55px;
+    margin-bottom:10px;
+}
+
+.box span{
+    font-weight:bold;
+    font-size:15px;
+    color:#0d47a1;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="logo.png">
+    <h1>LOGIN YOUR SYSTEM</h1>
+</header>
+
+<div class="container">
+    <div class="box-wrapper">
+
+        <!-- Teacher Login -->
+        <div class="box" onclick="openTeacher()">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135810.png">
+            <span>Teacher Login</span>
+        </div>
+
+        <!-- Admin Login -->
+        <div class="box" onclick="openAdmin()">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+            <span>Admin Login</span>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function openTeacher(){
+    window.location.href = "teacher-login.html";
+}
+
+function openAdmin(){
+    window.location.href = "admin-login.html";
+}
+</script>
+
+</body>
+</html>
